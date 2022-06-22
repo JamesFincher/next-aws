@@ -15,6 +15,11 @@ const mongoose = require('mongoose');
 
 // import models
 
+//apply middleware
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(cors());
+
 const port = process.env.PORT || 3001;
 app.use('/api/', authRoutes);
 
