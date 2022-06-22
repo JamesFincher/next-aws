@@ -1,17 +1,21 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
-const port = process.env.PORT || 3001;
 
 // import routers
 const authRoutes = require('./routes/auth');
 
 // import middleware
+require('dotenv').config();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
 // import controllers
 
 // import models
 
+const port = process.env.PORT || 3001;
 app.use('/api/', authRoutes);
 
 app.get('/', (req, res, next) => {
