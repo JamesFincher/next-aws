@@ -5157,7 +5157,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/home/james/projects/Udemy_node/10+loading+css/10 loading css/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "/home/james/projects/Udemy_node/10+loading+css/10 loading css/client/.next");
       return error;
     }
   };

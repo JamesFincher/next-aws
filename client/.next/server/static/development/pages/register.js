@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var nprogress_nprogress_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nprogress/nprogress.css */ "./node_modules/nprogress/nprogress.css");
 /* harmony import */ var nprogress_nprogress_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nprogress_nprogress_css__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "/home/james/projects/Udemy_node/10+loading+css/10 loading css/components/Layout.js";
+var _jsxFileName = "/home/james/projects/Udemy_node/10+loading+css/10 loading css/client/components/Layout.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -2170,6 +2170,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -2177,13 +2179,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/home/james/projects/Udemy_node/10+loading+css/10 loading css/pages/register.js";
+var _jsxFileName = "/home/james/projects/Udemy_node/10+loading+css/10 loading css/client/pages/register.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 
 
 
@@ -2200,6 +2203,14 @@ const Register = () => {
     success: '',
     buttonText: 'Register'
   });
+  const {
+    name,
+    email,
+    password,
+    error,
+    success,
+    buttonText
+  } = form;
 
   const handleChange = e => {
     setForm(_objectSpread({}, form, {
@@ -2213,23 +2224,25 @@ const Register = () => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log('Form data', form);
-    setForm(_objectSpread({}, form, {
-      buttonText: 'Registering...'
-    }));
+    axios__WEBPACK_IMPORTED_MODULE_9___default.a.post(`http://localhost:3005/api/register`, {
+      name,
+      email,
+      password
+    }).then(res => console.log(res.data)).catch(err => console.log(err));
   };
 
   const registerForm = () => __jsx("form", {
     onSubmit: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 38
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 39
     },
     __self: undefined
   }, __jsx("input", {
@@ -2239,25 +2252,6 @@ const Register = () => {
     className: "form-control",
     value: form.name,
     placeholder: "Give us your name",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 30
-    },
-    __self: undefined
-  })), __jsx("div", {
-    className: "form-group",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39
-    },
-    __self: undefined
-  }, __jsx("input", {
-    name: "email",
-    onChange: handleChange,
-    type: "email",
-    value: form.email,
-    className: "form-control",
-    placeholder: "Type your email",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 40
@@ -2271,12 +2265,12 @@ const Register = () => {
     },
     __self: undefined
   }, __jsx("input", {
-    name: "password",
+    name: "email",
     onChange: handleChange,
-    type: "password",
-    value: form.password,
+    type: "email",
+    value: email,
     className: "form-control",
-    placeholder: "A good password",
+    placeholder: "Type your email",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 50
@@ -2289,12 +2283,31 @@ const Register = () => {
       lineNumber: 59
     },
     __self: undefined
+  }, __jsx("input", {
+    name: "password",
+    onChange: handleChange,
+    type: "password",
+    value: password,
+    className: "form-control",
+    placeholder: "A good password",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 60
+    },
+    __self: undefined
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69
+    },
+    __self: undefined
   }, __jsx("button", {
     type: "submit",
     className: "btn btn-primary btn-block",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 70
     },
     __self: undefined
   }, "Register")));
@@ -2302,27 +2315,27 @@ const Register = () => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 77
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 78
     },
     __self: undefined
   }, __jsx("h1", {
     className: "text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 79
     },
     __self: undefined
   }, form.buttonText), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 80
     },
     __self: undefined
   }), registerForm()));
@@ -2332,15 +2345,26 @@ const Register = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*********************************!*\
   !*** multi ./pages/register.js ***!
   \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/james/projects/Udemy_node/10+loading+css/10 loading css/pages/register.js */"./pages/register.js");
+module.exports = __webpack_require__(/*! /home/james/projects/Udemy_node/10+loading+css/10 loading css/client/pages/register.js */"./pages/register.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

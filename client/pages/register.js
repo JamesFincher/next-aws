@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -10,6 +11,8 @@ const Register = () => {
     success: '',
     buttonText: 'Register',
   });
+
+  const { name, email, password, error, success, buttonText } = form;
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -22,7 +25,14 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form data', form);
-    setForm({ ...form, buttonText: 'Registering...' });
+    axios
+      .post(`http://localhost:3005/api/register`, {
+        name,
+        email,
+        password,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
   const registerForm = () => (
     <form onSubmit={handleSubmit}>
@@ -41,7 +51,7 @@ const Register = () => {
           name='email'
           onChange={handleChange}
           type='email'
-          value={form.email}
+          value={email}
           className='form-control'
           placeholder='Type your email'
         />
@@ -51,7 +61,7 @@ const Register = () => {
           name='password'
           onChange={handleChange}
           type='password'
-          value={form.password}
+          value={password}
           className='form-control'
           placeholder='A good password'
         />
