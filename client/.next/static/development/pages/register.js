@@ -75,7 +75,7 @@ var Layout = function Layout(_ref) {
 
   var nav = function nav() {
     return __jsx("ul", {
-      className: "nav nav-tabs bg-warning",
+      className: "nav nav-tabs bg-primary",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 25
