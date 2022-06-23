@@ -14655,12 +14655,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
+
 
 
 
@@ -14670,18 +14673,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var _jsxFileName = "/home/james/projects/Udemy_node/10+loading+css/10 loading css/client/pages/register.js";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
 
 
 
 
 
 var Register = function Register() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])({
     name: '',
     email: '',
     password: '',
@@ -14702,21 +14705,55 @@ var Register = function Register() {
   var handleChange = function handleChange(e) {
     var _objectSpread2;
 
-    setForm(_objectSpread({}, form, (_objectSpread2 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(_objectSpread2, e.target.name, e.target.value), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(_objectSpread2, "error", ''), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(_objectSpread2, "success", ''), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(_objectSpread2, "buttonText", 'Register'), _objectSpread2)));
+    setForm(_objectSpread({}, form, (_objectSpread2 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(_objectSpread2, e.target.name, e.target.value), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(_objectSpread2, "error", ''), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(_objectSpread2, "success", ''), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(_objectSpread2, "buttonText", 'Register'), _objectSpread2)));
   };
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    console.log('Form data', form);
-    axios__WEBPACK_IMPORTED_MODULE_9___default.a.post("http://localhost:3005/api/register", {
-      name: name,
-      email: email,
-      password: password
-    }).then(function (res) {
-      return console.log(res.data);
-    })["catch"](function (err) {
-      return console.log(err);
-    });
+    var response;
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_6___default.a.async(function handleSubmit$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault();
+            setForm(_objectSpread({}, form, {
+              buttonText: 'Registering...'
+            }));
+            console.log('Form data', form);
+            _context.prev = 3;
+            _context.next = 6;
+            return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_6___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_10___default.a.post("http://localhost:3005/api/register", {
+              name: name,
+              email: email,
+              password: password
+            }));
+
+          case 6:
+            response = _context.sent;
+            console.log(response);
+            setForm(_objectSpread({}, form, {
+              name: '',
+              email: '',
+              password: '',
+              buttonText: 'Submitted',
+              success: response.data
+            }));
+            _context.next = 14;
+            break;
+
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](3);
+            setForm(_objectSpread({}, form, {
+              error: _context.t0.response.data.error,
+              buttonText: 'Register'
+            }));
+
+          case 14:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, null, [[3, 11]]);
   };
 
   var registerForm = function registerForm() {
@@ -14724,14 +14761,14 @@ var Register = function Register() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 53
       },
       __self: this
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 54
       },
       __self: this
     }, __jsx("input", {
@@ -14743,14 +14780,14 @@ var Register = function Register() {
       placeholder: "Give us your name",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 55
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 64
       },
       __self: this
     }, __jsx("input", {
@@ -14762,14 +14799,14 @@ var Register = function Register() {
       placeholder: "Type your email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 65
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 74
       },
       __self: this
     }, __jsx("input", {
@@ -14781,14 +14818,14 @@ var Register = function Register() {
       placeholder: "A good password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 75
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 84
       },
       __self: this
     }, __jsx("button", {
@@ -14796,36 +14833,43 @@ var Register = function Register() {
       className: "btn btn-primary btn-block",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 85
       },
       __self: this
-    }, "Register")));
+    }, buttonText)));
   };
 
-  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_9__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 92
     },
     __self: this
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 93
     },
     __self: this
-  }, __jsx("h1", {
-    className: "text-center",
+  }, error ? __jsx("div", {
+    className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 94
     },
     __self: this
-  }, form.buttonText), __jsx("br", {
+  }, error) : '', success ? __jsx("div", {
+    className: "alert alert-success",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 95
+    },
+    __self: this
+  }, success) : '', __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
     },
     __self: this
   }), registerForm()));

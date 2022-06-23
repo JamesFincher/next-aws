@@ -40,7 +40,7 @@ exports.register = (req, res) => {
       res.send('Email sent');
     })
     .catch((error) => {
-      console.log('ses email on register', error);
+      console.log('ses email on register', error.message);
       res.send('email failed');
     });
 };

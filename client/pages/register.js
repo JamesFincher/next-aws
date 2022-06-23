@@ -22,17 +22,32 @@ const Register = () => {
       buttonText: 'Register',
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setForm({ ...form, buttonText: 'Registering...' });
     console.log('Form data', form);
-    axios
-      .post(`http://localhost:3005/api/register`, {
+    try {
+      const response = await axios.post(`http://localhost:3005/api/register`, {
         name,
         email,
         password,
-      })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      });
+      console.log(response);
+      setForm({
+        ...form,
+        name: '',
+        email: '',
+        password: '',
+        buttonText: 'Submitted',
+        success: response.data,
+      });
+    } catch (error) {
+      setForm({
+        ...form,
+        error: error.response.data.error,
+        buttonText: 'Register',
+      });
+    }
   };
   const registerForm = () => (
     <form onSubmit={handleSubmit}>
@@ -68,7 +83,7 @@ const Register = () => {
       </div>
       <div className='form-group'>
         <button type='submit' className='btn btn-primary btn-block'>
-          Register
+          {buttonText}
         </button>
       </div>
     </form>
@@ -76,7 +91,8 @@ const Register = () => {
   return (
     <Layout>
       <div className='col-md-6 offset-md-3'>
-        <h1 className='text-center'>{form.buttonText}</h1>
+        {error ? <div className='alert alert-danger'>{error}</div> : ''}
+        {success ? <div className='alert alert-success'>{success}</div> : ''}
         <br />
         {registerForm()}
       </div>

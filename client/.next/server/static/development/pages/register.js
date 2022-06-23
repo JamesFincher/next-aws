@@ -2221,28 +2221,47 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
+    setForm(_objectSpread({}, form, {
+      buttonText: 'Registering...'
+    }));
     console.log('Form data', form);
-    axios__WEBPACK_IMPORTED_MODULE_9___default.a.post(`http://localhost:3005/api/register`, {
-      name,
-      email,
-      password
-    }).then(res => console.log(res.data)).catch(err => console.log(err));
+
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_9___default.a.post(`http://localhost:3005/api/register`, {
+        name,
+        email,
+        password
+      });
+      console.log(response);
+      setForm(_objectSpread({}, form, {
+        name: '',
+        email: '',
+        password: '',
+        buttonText: 'Submitted',
+        success: response.data
+      }));
+    } catch (error) {
+      setForm(_objectSpread({}, form, {
+        error: error.response.data.error,
+        buttonText: 'Register'
+      }));
+    }
   };
 
   const registerForm = () => __jsx("form", {
     onSubmit: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 53
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 54
     },
     __self: undefined
   }, __jsx("input", {
@@ -2254,14 +2273,14 @@ const Register = () => {
     placeholder: "Give us your name",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 55
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 64
     },
     __self: undefined
   }, __jsx("input", {
@@ -2273,14 +2292,14 @@ const Register = () => {
     placeholder: "Type your email",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 65
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 59
+      lineNumber: 74
     },
     __self: undefined
   }, __jsx("input", {
@@ -2292,14 +2311,14 @@ const Register = () => {
     placeholder: "A good password",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 75
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 84
     },
     __self: undefined
   }, __jsx("button", {
@@ -2307,35 +2326,42 @@ const Register = () => {
     className: "btn btn-primary btn-block",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 85
     },
     __self: undefined
-  }, "Register")));
+  }, buttonText)));
 
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 92
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 93
     },
     __self: undefined
-  }, __jsx("h1", {
-    className: "text-center",
+  }, error ? __jsx("div", {
+    className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 94
     },
     __self: undefined
-  }, form.buttonText), __jsx("br", {
+  }, error) : '', success ? __jsx("div", {
+    className: "alert alert-success",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 95
+    },
+    __self: undefined
+  }, success) : '', __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
     },
     __self: undefined
   }), registerForm()));
