@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const { registerEmailParams } = require('../helpers/email');
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -35,39 +36,24 @@ exports.register = (req, res) => {
     );
 
     //send email
-    const params = {
-      Source: process.env.EMAIL_FROM,
-      Destination: {
-        ToAddresses: [email],
-      },
-      ReplyToAddresses: [process.env.EMAIL_TO],
-      Message: {
-        Body: {
-          Html: {
-            Charset: 'UTF-8',
-            Data: `<html><h1>Hello ${name}, verify your email address!</h1 style="color:red;"><p>
-            Please click the following link to verify your email and finish your registration:
-            </p>
-            <p>${process.env.CLIENT_URL}/auth/activate/${token}</p></html>`,
-          },
-        },
-        Subject: {
-          Charset: 'UTF-8',
-          Data: 'Complete your registration',
-        },
-      },
-    };
-
+    const params = registerEmailParams(email, token);
+    console.log(params);
     const sendEmailOnRegister = ses.sendEmail(params).promise();
 
     sendEmailOnRegister
       .then((data) => {
-        console.log('email submitted to SES', data);
-        res.send('Email sent');
+        console.log('email submitted to SES', data, email);
+        res.json({
+          message: `Email has been sent to ${email}, Follow the directions to complete your registration.`,
+        });
       })
       .catch((error) => {
-        console.log('ses email on register', error.message);
-        res.send('email failed');
+        console.log('ses email on reg error', error);
+
+        res.json({
+          message: `something happened... whoops.... ${error}`,
+          error: `We could not verify your email, please try again later.`,
+        });
       });
   });
 };

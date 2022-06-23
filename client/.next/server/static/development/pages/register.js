@@ -2264,17 +2264,18 @@ const Register = () => {
         email,
         password
       });
-      console.log(response);
-      setForm(_objectSpread({}, form, {
-        name: '',
-        email: '',
-        password: '',
-        buttonText: 'Submitted',
-        success: response.data
+      console.log('ressss', response);
+      response.data.error ? setForm(_objectSpread({}, form, {
+        error: `${response.data.message} /n /n Error Message: ${response.data.error}`,
+        buttonText: 'Register'
+      })) : setForm(_objectSpread({}, form, {
+        success: response.data.message,
+        buttonText: 'Register'
       }));
     } catch (error) {
+      console.log(error);
       setForm(_objectSpread({}, form, {
-        error: error.response.data.error,
+        error: error.data,
         buttonText: 'Register'
       }));
     }
@@ -2284,14 +2285,14 @@ const Register = () => {
     onSubmit: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 58
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 55
+      lineNumber: 59
     },
     __self: undefined
   }, __jsx("input", {
@@ -2304,14 +2305,14 @@ const Register = () => {
     required: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 60
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 70
     },
     __self: undefined
   }, __jsx("input", {
@@ -2324,14 +2325,14 @@ const Register = () => {
     required: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 71
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 81
     },
     __self: undefined
   }, __jsx("input", {
@@ -2344,14 +2345,14 @@ const Register = () => {
     required: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 82
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 92
     },
     __self: undefined
   }, __jsx("button", {
@@ -2359,7 +2360,7 @@ const Register = () => {
     className: "btn btn-primary btn-block",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 93
     },
     __self: undefined
   }, buttonText)));
@@ -2367,34 +2368,34 @@ const Register = () => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 96
+      lineNumber: 100
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 101
     },
     __self: undefined
   }, error ? __jsx("div", {
     className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 98
+      lineNumber: 102
     },
     __self: undefined
   }, error) : '', success ? __jsx("div", {
     className: "alert alert-success",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 99
+      lineNumber: 103
     },
     __self: undefined
   }, success) : '', __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 100
+      lineNumber: 104
     },
     __self: undefined
   }), registerForm()));

@@ -14790,26 +14790,27 @@ var Register = function Register() {
 
           case 6:
             response = _context.sent;
-            console.log(response);
-            setForm(_objectSpread({}, form, {
-              name: '',
-              email: '',
-              password: '',
-              buttonText: 'Submitted',
-              success: response.data
+            console.log('ressss', response);
+            response.data.error ? setForm(_objectSpread({}, form, {
+              error: "".concat(response.data.message, " /n /n Error Message: ").concat(response.data.error),
+              buttonText: 'Register'
+            })) : setForm(_objectSpread({}, form, {
+              success: response.data.message,
+              buttonText: 'Register'
             }));
-            _context.next = 14;
+            _context.next = 15;
             break;
 
           case 11:
             _context.prev = 11;
             _context.t0 = _context["catch"](3);
+            console.log(_context.t0);
             setForm(_objectSpread({}, form, {
-              error: _context.t0.response.data.error,
+              error: _context.t0.data,
               buttonText: 'Register'
             }));
 
-          case 14:
+          case 15:
           case "end":
             return _context.stop();
         }
@@ -14822,14 +14823,14 @@ var Register = function Register() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 58
       },
       __self: this
     }, __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 55
+        lineNumber: 59
       },
       __self: this
     }, __jsx("input", {
@@ -14842,14 +14843,14 @@ var Register = function Register() {
       required: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 60
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 66
+        lineNumber: 70
       },
       __self: this
     }, __jsx("input", {
@@ -14862,14 +14863,14 @@ var Register = function Register() {
       required: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 71
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 81
       },
       __self: this
     }, __jsx("input", {
@@ -14882,14 +14883,14 @@ var Register = function Register() {
       required: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 82
       },
       __self: this
     })), __jsx("div", {
       className: "form-group",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 92
       },
       __self: this
     }, __jsx("button", {
@@ -14897,7 +14898,7 @@ var Register = function Register() {
       className: "btn btn-primary btn-block",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 93
       },
       __self: this
     }, buttonText)));
@@ -14906,34 +14907,34 @@ var Register = function Register() {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_9__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 96
+      lineNumber: 100
     },
     __self: this
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 101
     },
     __self: this
   }, error ? __jsx("div", {
     className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 98
+      lineNumber: 102
     },
     __self: this
   }, error) : '', success ? __jsx("div", {
     className: "alert alert-success",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 99
+      lineNumber: 103
     },
     __self: this
   }, success) : '', __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 100
+      lineNumber: 104
     },
     __self: this
   }), registerForm()));

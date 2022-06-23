@@ -33,19 +33,23 @@ const Register = () => {
         email,
         password,
       });
-      console.log(response);
-      setForm({
-        ...form,
-        name: '',
-        email: '',
-        password: '',
-        buttonText: 'Submitted',
-        success: response.data,
-      });
+      console.log('ressss', response);
+      response.data.error
+        ? setForm({
+            ...form,
+            error: `${response.data.message} /n /n Error Message: ${response.data.error}`,
+            buttonText: 'Register',
+          })
+        : setForm({
+            ...form,
+            success: response.data.message,
+            buttonText: 'Register',
+          });
     } catch (error) {
+      console.log(error);
       setForm({
         ...form,
-        error: error.response.data.error,
+        error: error.data,
         buttonText: 'Register',
       });
     }
