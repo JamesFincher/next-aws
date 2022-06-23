@@ -20,7 +20,15 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cors());
 
+//set port
 const port = process.env.PORT || 3001;
+
+//connect to mongoose
+mongoose
+  .connect(process.env.DATABASE, {})
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log('db error', err));
+
 app.use('/api/', authRoutes);
 
 app.get('/', (req, res, next) => {
