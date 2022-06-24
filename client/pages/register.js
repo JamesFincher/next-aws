@@ -1,111 +1,125 @@
-import Layout from '../components/Layout';
 import { useState } from 'react';
+import Layout from '../components/Layout';
 import axios from 'axios';
-import { API } from '../config';
 import { showSuccessMessage, showErrorMessage } from '../helpers/alerts';
+import { API } from '../config';
 
 const Register = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-    error: '',
-    success: '',
-    buttonText: 'Register',
-  });
-
-  const { name, email, password, error, success, buttonText } = form;
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-      error: '',
-      success: '',
-      buttonText: 'Register',
+    const [state, setState] = useState({
+        name: 'Ryan',
+        email: 'ryan@gmail.com',
+        password: 'rrrrrr',
+        error: '',
+        success: '',
+        buttonText: 'Register'
     });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setForm({ ...form, buttonText: 'Registering...' });
-    console.log('Form data', form);
-    try {
-      const response = await axios.post(`${API}/register`, {
-        name,
-        email,
-        password,
-      });
-      console.log('ressss', response);
-      response.data.error
-        ? setForm({
-            ...form,
-            error: `${response.data.message} /n /n Error Message: ${response.data.error}`,
-            buttonText: 'Register',
-          })
-        : setForm({
-            ...form,
-            success: response.data.message,
-            buttonText: 'Register',
-          });
-    } catch (error) {
-      console.log(error);
-      setForm({
-        ...form,
-        error: error.response.data.error,
-        buttonText: 'Register',
-      });
-    }
-  };
-  const registerForm = () => (
-    <form onSubmit={handleSubmit}>
-      <div className='form-group'>
-        <input
-          name='name'
-          type='text'
-          onChange={handleChange}
-          className='form-control'
-          value={form.name}
-          placeholder='Give us your name'
-          required
-        />
-      </div>
-      <div className='form-group'>
-        <input
-          name='email'
-          onChange={handleChange}
-          type='email'
-          value={email}
-          className='form-control'
-          placeholder='Type your email'
-          required
-        />
-      </div>
-      <div className='form-group'>
-        <input
-          name='password'
-          onChange={handleChange}
-          type='password'
-          value={password}
-          className='form-control'
-          placeholder='A good password'
-          required
-        />
-      </div>
-      <div className='form-group'>
-        <button type='submit' className='btn btn-primary btn-block'>
-          {buttonText}
-        </button>
-      </div>
-    </form>
-  );
-  return (
-    <Layout>
-      <div className='col-md-6 offset-md-3'>
-        {success && showSuccessMessage(success)}
-        {error && showErrorMessage(error)}
-        <br />
-        {registerForm()}
-      </div>
-    </Layout>
-  );
+
+    const { name, email, password, error, success, buttonText } = state;
+
+    const handleChange = name => e => {
+        setState({ ...state, [name]: e.target.value, error: '', success: '', buttonText: 'Register' });
+    };
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        setState({ ...state, buttonText: 'Registering' });
+        try {
+            const response = await axios.post(`${API}/register`, {
+                name,
+                email,
+                password
+            });
+            console.log(response);
+            setState({
+                ...state,
+                name: '',
+                email: '',
+                password: '',
+                buttonText: 'Submitted',
+                success: response.data.message
+            });
+        } catch (error) {
+            console.log(error);
+            setState({ ...state, buttonText: 'Register', error: error.response.data.error });
+        }
+    };
+
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     setState({ ...state, buttonText: 'Registering' });
+    //     // console.table({ name, email, password });
+    //     axios
+    //         .post(`http://localhost:8000/api/register`, {
+    //             name,
+    //             email,
+    //             password
+    //         })
+    //         .then(response => {
+    //             console.log(response);
+    //             setState({
+    //                 ...state,
+    //                 name: '',
+    //                 email: '',
+    //                 password: '',
+    //                 buttonText: 'Submitted',
+    //                 success: response.data.message
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //             setState({ ...state, buttonText: 'Register', error: error.response.data.error });
+    //         });
+    // };
+
+    const registerForm = () => (
+        <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <input
+                    value={name}
+                    onChange={handleChange('name')}
+                    type="text"
+                    className="form-control"
+                    placeholder="Type your name"
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <input
+                    value={email}
+                    onChange={handleChange('email')}
+                    type="email"
+                    className="form-control"
+                    placeholder="Type your email"
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <input
+                    value={password}
+                    onChange={handleChange('password')}
+                    type="password"
+                    className="form-control"
+                    placeholder="Type your password"
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <button className="btn btn-outline-warning">{buttonText}</button>
+            </div>
+        </form>
+    );
+
+    return (
+        <Layout>
+            <div className="col-md-6 offset-md-3">
+                <h1>Register</h1>
+                <br />
+                {success && showSuccessMessage(success)}
+                {error && showErrorMessage(error)}
+                {registerForm()}
+            </div>
+        </Layout>
+    );
 };
+
 export default Register;

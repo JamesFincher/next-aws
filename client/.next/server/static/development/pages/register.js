@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -159,7 +159,7 @@ const Layout = ({
   }));
 
   const nav = () => __jsx("ul", {
-    className: "nav nav-tabs bg-primary",
+    className: "nav nav-tabs bg-warning",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
@@ -254,16 +254,16 @@ const Layout = ({
 /*!*******************!*\
   !*** ./config.js ***!
   \*******************/
-/*! exports provided: API, DOMAIN, FB_APP_ID, APP_NAME, PRODUCTION */
+/*! exports provided: API, APP_NAME, DOMAIN, PRODUCTION, FB_APP_ID */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API", function() { return API; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMAIN", function() { return DOMAIN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FB_APP_ID", function() { return FB_APP_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_NAME", function() { return APP_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMAIN", function() { return DOMAIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCTION", function() { return PRODUCTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FB_APP_ID", function() { return FB_APP_ID; });
 /* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/config */ "next/config");
 /* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_config__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -271,10 +271,10 @@ const {
   publicRuntimeConfig
 } = next_config__WEBPACK_IMPORTED_MODULE_0___default()();
 const API = publicRuntimeConfig.API;
-const DOMAIN = publicRuntimeConfig.DOMAIN;
-const FB_APP_ID = publicRuntimeConfig.FB_APP_ID;
 const APP_NAME = publicRuntimeConfig.APP_NAME;
+const DOMAIN = publicRuntimeConfig.DOMAIN;
 const PRODUCTION = publicRuntimeConfig.PRODUCTION;
+const FB_APP_ID = publicRuntimeConfig.FB_APP_ID;
 
 /***/ }),
 
@@ -298,7 +298,7 @@ const showSuccessMessage = success => __jsx("div", {
   className: "alert alert-success",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 2
+    lineNumber: 1
   },
   __self: undefined
 }, success);
@@ -306,7 +306,7 @@ const showErrorMessage = error => __jsx("div", {
   className: "alert alert-danger",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 2
   },
   __self: undefined
 }, error);
@@ -2235,8 +2235,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../config */ "./config.js");
-/* harmony import */ var _helpers_alerts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../helpers/alerts */ "./helpers/alerts.js");
+/* harmony import */ var _helpers_alerts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/alerts */ "./helpers/alerts.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../config */ "./config.js");
 
 
 
@@ -2260,12 +2260,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 const Register = () => {
   const {
-    0: form,
-    1: setForm
+    0: state,
+    1: setState
   } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({
-    name: '',
-    email: '',
-    password: '',
+    name: 'Ryan',
+    email: 'ryan@gmail.com',
+    password: 'rrrrrr',
     error: '',
     success: '',
     buttonText: 'Register'
@@ -2277,11 +2277,11 @@ const Register = () => {
     error,
     success,
     buttonText
-  } = form;
+  } = state;
 
-  const handleChange = e => {
-    setForm(_objectSpread({}, form, {
-      [e.target.name]: e.target.value,
+  const handleChange = name => e => {
+    setState(_objectSpread({}, state, {
+      [name]: e.target.value,
       error: '',
       success: '',
       buttonText: 'Register'
@@ -2290,114 +2290,135 @@ const Register = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setForm(_objectSpread({}, form, {
-      buttonText: 'Registering...'
+    setState(_objectSpread({}, state, {
+      buttonText: 'Registering'
     }));
-    console.log('Form data', form);
 
     try {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_9___default.a.post(`${_config__WEBPACK_IMPORTED_MODULE_10__["API"]}/register`, {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_9___default.a.post(`${_config__WEBPACK_IMPORTED_MODULE_11__["API"]}/register`, {
         name,
         email,
         password
       });
-      console.log('ressss', response);
-      response.data.error ? setForm(_objectSpread({}, form, {
-        error: `${response.data.message} /n /n Error Message: ${response.data.error}`,
-        buttonText: 'Register'
-      })) : setForm(_objectSpread({}, form, {
-        success: response.data.message,
-        buttonText: 'Register'
+      console.log(response);
+      setState(_objectSpread({}, state, {
+        name: '',
+        email: '',
+        password: '',
+        buttonText: 'Submitted',
+        success: response.data.message
       }));
     } catch (error) {
       console.log(error);
-      setForm(_objectSpread({}, form, {
-        error: error.response.data.error,
-        buttonText: 'Register'
+      setState(_objectSpread({}, state, {
+        buttonText: 'Register',
+        error: error.response.data.error
       }));
     }
-  };
+  }; // const handleSubmit = e => {
+  //     e.preventDefault();
+  //     setState({ ...state, buttonText: 'Registering' });
+  //     // console.table({ name, email, password });
+  //     axios
+  //         .post(`http://localhost:8000/api/register`, {
+  //             name,
+  //             email,
+  //             password
+  //         })
+  //         .then(response => {
+  //             console.log(response);
+  //             setState({
+  //                 ...state,
+  //                 name: '',
+  //                 email: '',
+  //                 password: '',
+  //                 buttonText: 'Submitted',
+  //                 success: response.data.message
+  //             });
+  //         })
+  //         .catch(error => {
+  //             console.log(error);
+  //             setState({ ...state, buttonText: 'Register', error: error.response.data.error });
+  //         });
+  // };
+
 
   const registerForm = () => __jsx("form", {
     onSubmit: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 59
+      lineNumber: 75
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 76
     },
     __self: undefined
   }, __jsx("input", {
-    name: "name",
+    value: name,
+    onChange: handleChange('name'),
     type: "text",
-    onChange: handleChange,
     className: "form-control",
-    value: form.name,
-    placeholder: "Give us your name",
+    placeholder: "Type your name",
     required: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 77
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 86
     },
     __self: undefined
   }, __jsx("input", {
-    name: "email",
-    onChange: handleChange,
-    type: "email",
     value: email,
+    onChange: handleChange('email'),
+    type: "email",
     className: "form-control",
     placeholder: "Type your email",
     required: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 87
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 96
     },
     __self: undefined
   }, __jsx("input", {
-    name: "password",
-    onChange: handleChange,
-    type: "password",
     value: password,
+    onChange: handleChange('password'),
+    type: "password",
     className: "form-control",
-    placeholder: "A good password",
+    placeholder: "Type your password",
     required: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83
+      lineNumber: 97
     },
     __self: undefined
   })), __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 93
+      lineNumber: 106
     },
     __self: undefined
   }, __jsx("button", {
-    type: "submit",
-    className: "btn btn-primary btn-block",
+    className: "btn btn-outline-warning",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 107
     },
     __self: undefined
   }, buttonText)));
@@ -2405,30 +2426,36 @@ const Register = () => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 101
+      lineNumber: 113
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 114
     },
     __self: undefined
-  }, success && Object(_helpers_alerts__WEBPACK_IMPORTED_MODULE_11__["showSuccessMessage"])(success), error && Object(_helpers_alerts__WEBPACK_IMPORTED_MODULE_11__["showErrorMessage"])(error), __jsx("br", {
+  }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105
+      lineNumber: 115
     },
     __self: undefined
-  }), registerForm()));
+  }, "Register"), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 116
+    },
+    __self: undefined
+  }), success && Object(_helpers_alerts__WEBPACK_IMPORTED_MODULE_10__["showSuccessMessage"])(success), error && Object(_helpers_alerts__WEBPACK_IMPORTED_MODULE_10__["showErrorMessage"])(error), registerForm()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Register);
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!*********************************!*\
   !*** multi ./pages/register.js ***!
   \*********************************/
