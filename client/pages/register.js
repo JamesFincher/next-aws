@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import { useState } from 'react';
 import axios from 'axios';
 import { API } from '../config';
+import { showSuccessMessage, showErrorMessage } from '../helpers/alerts';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -49,7 +50,7 @@ const Register = () => {
       console.log(error);
       setForm({
         ...form,
-        error: error.data,
+        error: error.response.data.error,
         buttonText: 'Register',
       });
     }
@@ -99,8 +100,8 @@ const Register = () => {
   return (
     <Layout>
       <div className='col-md-6 offset-md-3'>
-        {error ? <div className='alert alert-danger'>{error}</div> : ''}
-        {success ? <div className='alert alert-success'>{success}</div> : ''}
+        {success && showSuccessMessage(success)}
+        {error && showErrorMessage(error)}
         <br />
         {registerForm()}
       </div>
